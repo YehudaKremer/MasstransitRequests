@@ -9,5 +9,4 @@ namespace ClassLibrary1.Commands
 namespace ClassLibrary1.Events
 {
     public record UserDetailsFound(Guid CorrelationId, User User);
-    public record GotUserDetails(User User);
 }

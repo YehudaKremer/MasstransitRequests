@@ -14,8 +14,6 @@ namespace SagaService
 
                     services.AddMassTransit(config =>
                     {
-                        config.AddConsumers(Assembly.GetExecutingAssembly());
-
                         config.UsingRabbitMq((context, cfg) =>
                         {
                             cfg.Host("localhost", "requests", h =>

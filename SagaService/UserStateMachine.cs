@@ -15,15 +15,14 @@ namespace SagaService
     {
         // Custom statuses for this saga
         public State GettingUserDetails { get; private set; }
-        public State UserDetailsReturned { get; private set; }
 
         // Events/Commands used in this saga
         public Event<GetUserDetails> GetUserDetails { get; private set; }
-        public Event<UserDetailsFound> UserDetailsFound { get; private set; }
+        public Event<UserDetailsFound> GotUserDetails { get; private set; }
 
         public UserStateMachine()
         {
-            InstanceState(x => x.CurrentState, GettingUserDetails, UserDetailsReturned);
+            InstanceState(x => x.CurrentState, GettingUserDetails);
 
             Initially(
                 When(GetUserDetails)
@@ -35,13 +34,12 @@ namespace SagaService
                     .TransitionTo(GettingUserDetails));
 
             During(GettingUserDetails,
-                When(UserDetailsFound)
-                .ThenAsync(async context =>
+                When(GotUserDetails)
+                .ThenAsync(async c =>
                 {
-                    var endpoint = await context.GetSendEndpoint(context.Saga.ResponseAddress);
-                    await endpoint.Send(new GotUserDetails(context.Message.User));
+                    var endpoint = await c.GetSendEndpoint(c.Saga.ResponseAddress);
+                    await endpoint.Send(new UserDetailsFound(c.Saga.CorrelationId, c.Message.User));
                 })
-                .TransitionTo(UserDetailsReturned)
                 .Finalize());
 
             SetCompletedWhenFinalized();

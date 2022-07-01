@@ -15,15 +15,7 @@ namespace WorkerService1
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            try
-            {
-                var result = await client.GetResponse<GotUserDetails>(new GetUserDetails(NewId.NextGuid(), 1));
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            var result = await client.GetResponse<UserDetailsFound>(new GetUserDetails(NewId.NextGuid(), 1));
 
             while (!stoppingToken.IsCancellationRequested)
             {

@@ -8,7 +8,7 @@ namespace WorkerService2.Consumers
     {
         public async Task Consume(ConsumeContext<FindUserDetailsByID> context)
         {
-            await Task.Delay(5000);
+            //await Task.Delay(2000);
             await context.Publish(
                 new UserDetailsFound(context.Message.CorrelationId, new ClassLibrary1.User(10, "Yehuda")));
         }
