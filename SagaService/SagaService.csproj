@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>dotnet-SagaService-C36A1D72-7898-4125-B496-AFAC35FA4EE6</UserSecretsId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj" />
+	</ItemGroup>
+</Project>
