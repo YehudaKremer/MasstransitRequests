@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<UserSecretsId>dotnet-SagaService-C36A1D72-7898-4125-B496-AFAC35FA4EE6</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
